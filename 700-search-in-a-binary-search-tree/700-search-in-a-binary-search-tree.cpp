@@ -9,25 +9,26 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+class Solution {   //Recursion way
 public:
-    TreeNode *p=NULL;
-    void Solve(TreeNode* root, int val)
-    {
-        if(root==NULL)
-        {
-            return ;
-        }
-        if(root->val==val)
-        {
-            p=root;
-        }
-        Solve(root->left,val);
-        Solve(root->right,val);
-    }
     TreeNode* searchBST(TreeNode* root, int val) {
-        p=NULL;
-         Solve(root,val);
+        TreeNode *p=NULL;
+        while(root!=NULL)
+        {
+            if(val>root->val)
+            {
+                root=root->right;
+            }
+            else if(val==root->val)
+            {
+                p=root;
+                break;
+            }
+            else if(val<root->val)
+            {
+                root=root->left;
+            }
+        }
         return p;
     }
 };

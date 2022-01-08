@@ -11,44 +11,24 @@
  */
 class Solution {
 public:
-    TreeNode* insertIntoBST(TreeNode* root, int val) {
-        TreeNode *p=root,*q=NULL;
+    TreeNode* Solve(TreeNode *root,int val,TreeNode *temp)
+    {
         if(root==NULL)
         {
-            TreeNode *temp=new TreeNode(val);
             return temp;
         }
-        while(p!=NULL)
-        {
-            if(p->val==val)
-            {
-                break;
-            }
-            else if(val>p->val)
-            {
-                q=p;
-                p=p->right;
-            }
-            else if(val<p->val)
-            {
-                q=p;
-                p=p->left;
-            }
-        }
-        if(p!=NULL)
-        {
-            return root;
-        }
-        else{
-            TreeNode *temp=new TreeNode(val);
-            if(q->val<val)
-            {
-                q->right=temp;
-            }
-            else{
-                q->left=temp;
-            }
-        }
+        if(val>root->val)
+        root->right=Solve(root->right,val,temp);
+        else if(val<root->val)
+        root->left=Solve(root->left,val,temp);
+        return root;
+        
+    }
+    
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        //Iterative Done
+        TreeNode *temp=new TreeNode(val);
+        root=Solve(root,val,temp);
         return root;
     }
 };

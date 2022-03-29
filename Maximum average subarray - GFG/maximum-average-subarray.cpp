@@ -10,25 +10,24 @@ using namespace std;
 class Solution{   
 public:
     int findMaxAverage(int arr[], int n, int k) {
-              
-       int sum=0;
-       for(int i=0;i<k;i++)
-       {
-           sum=sum+arr[i];
-       }
-       int x=0;
-         int maxm=sum;
-       for(int i=0;i<n-k;i++)
-       {
+        int sum=0;
+        for(int i=0;i<k;i++)
+        {
+            sum+=arr[i];
+        }
+        int maxM=sum;
+        int idx=0;
+        for(int i=0;i<(n-k);i++)
+        {
             sum=sum-arr[i]+arr[i+k];
-            
-            if(sum>maxm)
-           {
-               maxm=sum;
-               x=i+1;
-           }
-       }
-       return  x;
+            if(sum>maxM)
+            {
+                  maxM=sum;
+                  idx=i+1;
+            }
+        }
+        
+        return idx;
     }
 };
 

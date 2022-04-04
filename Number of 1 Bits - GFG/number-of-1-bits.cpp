@@ -5,13 +5,15 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
   public:
-    int setBits(int N) {
+    int setBits(int n) {
         // Write Your Code here
+          int rsbm=n&-n;
         int cnt=0;
-        while(N!=0)
+        while(rsbm!=0)
         {
-            if(N%2==1) cnt++;
-            N=N/2;
+            n=n^rsbm;
+            rsbm=n&-n;
+            cnt++;
         }
         return cnt;
     }

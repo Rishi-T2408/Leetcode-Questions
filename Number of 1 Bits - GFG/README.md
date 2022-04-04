@@ -1,5 +1,5 @@
 # Number of 1 Bits
-## Easy 
+##  Easy 
 <div class="problem-statement" style="user-select: auto;">
                 <p style="user-select: auto;"></p><p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Given a positive integer N, print count of set bits in it.&nbsp;</span></p>
 

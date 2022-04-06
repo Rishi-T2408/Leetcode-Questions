@@ -10,9 +10,8 @@ public:
             for(int j=(i+1);j<n;j++)
             {
                 int chk=(target-arr[i]-arr[j]);
-                cnt+=mp[chk];
+                cnt=(cnt+mp[chk])%mod;
             }
-            cnt%=mod;
             mp[arr[i]]++;
         }
         return cnt;

@@ -1,5 +1,5 @@
 # Next element with greater frequency
-## Medium 
+##  Medium 
 <div class="problem-statement" style="user-select: auto;">
                 <p style="user-select: auto;"></p><p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Given an array&nbsp;<strong style="user-select: auto;">arr[ ]</strong>&nbsp;of&nbsp;<strong style="user-select: auto;">n</strong>&nbsp;integers, for every element, find the closest element on it's right that has a greater frequency than its own frequency.</span></p>
 

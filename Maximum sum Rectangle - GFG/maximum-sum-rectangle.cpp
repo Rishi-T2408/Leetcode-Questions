@@ -9,22 +9,26 @@ using namespace std;
 
 class Solution {
   public:
-  int kadanel(vector<int> &res)
+    
+    int Kadane(vector<int> res)
     {
-        int max1=INT_MIN,max2=0;
+       
+        int max1=INT_MIN;
+        int sum=0;
         for(int i=0;i<res.size();i++)
         {
-            max2+=res[i];
-            if(max1<max2)
-                max1=max2;
-            if(max2<0)
-                max2=0;
-                
+            sum+=res[i];
+            max1=max(max1,sum);
+            if(sum<0)
+            {
+                sum=0;
+            }
+           
         }
         return max1;
     }
+    
     int maximumSumRectangle(int r, int c, vector<vector<int>> M) {
-        // code here
         int ans=INT_MIN;
         for(int i=0;i<c;i++)
         {
@@ -35,9 +39,9 @@ class Solution {
                 {
                     res[k]+=M[k][j];
                 }
-                ans=max(ans,kadanel(res));
+                ans=max(ans,Kadane(res));
             }
-            
+           
         }
         return ans;
     }

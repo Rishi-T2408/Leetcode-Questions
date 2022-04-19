@@ -11,33 +11,30 @@
  */
 class Solution {
 public:
-    int k=0;
-    void Solve(TreeNode *root,vector<int> &ino)
-    {
-        if(root==NULL) return ;
-        Solve(root->left,ino);
-        ino.push_back(root->val);
-        Solve(root->right,ino);
-    }
+    TreeNode *first,*last,*prev;
     
-    void Swap(TreeNode *root,vector<int> &v)
+    void Solve(TreeNode *root)
     {
         if(root==NULL) return ;
-        Swap(root->left,v);
-        if(root->val!=v[k])
+        Solve(root->left);  //This thing is done like an inorder only so like that only we are detecting the error
+        if(prev!=NULL && prev->val>root->val)
         {
-            swap(root->val,v[k++]);
+            if(first==NULL)
+            {
+                first=prev;
+                last=root;
+            }
+            else last=root;
         }
-        else{
-            k++;
-        }
-        Swap(root->right,v);
+        prev=root;
+        Solve(root->right);
     }
     
     void recoverTree(TreeNode* root) {
-        vector<int> ino;
-        Solve(root,ino);
-        sort(ino.begin(),ino.end());
-        Swap(root,ino);
+        first=NULL;
+        last=NULL;
+        prev=NULL;
+        Solve(root);
+        swap(first->val,last->val);
     }
 };

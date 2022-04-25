@@ -9,6 +9,9 @@ using namespace std;
 class Solution {
   public:
     int numOfPairs(int X[], int Y[], int N) {
+        
+        //For the given pair either the x coordinate of both should be same or the y coordinate of both should be same
+        
         int cntDup = 0;
         map<int,int> mapX, mapY;
         map<pair<int,int>, bool> mp;

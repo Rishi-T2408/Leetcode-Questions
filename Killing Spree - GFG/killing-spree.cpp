@@ -8,15 +8,14 @@ class Solution {
 public:
     long long int killinSpree(long long int n)
     {
-        // Code Here
-         long long count = 0,cost = 1;
-       
-       while(n-cost*cost>=0){
-           n = n-cost*cost;
-           cost++;
+       long long count=0;
+       long long cost=1;
+       while((n-cost*cost)>=0)
+       {
+           n=n-cost*cost;
            count++;
+           cost++;
        }
-       
        return count;
     }
 };

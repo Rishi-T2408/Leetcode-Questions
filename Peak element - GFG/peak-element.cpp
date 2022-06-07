@@ -15,17 +15,19 @@ class Solution
     int peakElement(int a[], int n)
     {
       int s = 0 , e = n-1 ;
-      int mid = (s+e)/2 ;
+     
+      //Iss case mai apnn logo ka greater then eqauls to vaala case bhi consider hoojayega
       
       while( s < e)
       {
+           int mid = (s+e)/2 ;
           if(a[mid] < a[mid+1]){
           s = mid + 1;
           }
           else{
               e = mid;
           }
-        mid = (s+e)/2 ;
+       
       }
     return s ;
     }

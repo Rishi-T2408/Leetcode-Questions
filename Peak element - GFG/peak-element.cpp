@@ -12,48 +12,22 @@ using namespace std;
 class Solution
 {
     public:
-    int peakElement(int arr[], int n)
+    int peakElement(int a[], int n)
     {
-       // Your code here
-       if(n==1) return 0;
-       int l=0;
-       int r=(n-1);
-       
-       while(l<=r)
-       {
-           int mid=l+(r-l)/2;
-           if(mid>0 && mid<n-1)
-           {
-               if(arr[mid-1]<arr[mid] && arr[mid+1]<arr[mid]) return mid;
-               else if(arr[mid-1]>arr[mid] && arr[mid+1]>arr[mid])
-               {
-                   if(arr[mid-1]>arr[mid+1])
-                   {
-                       r=mid-1;
-                   }
-                   else{
-                       l=mid+1;
-                   }
-               }
-               else if(arr[mid+1]>arr[mid]) l=mid+1;
-               else{
-                   r=mid-1;
-               }    
-           }
-           else
-           {
-               if(mid==0)   //Iska matlab ekhh dum chtt ke vaaha prr paaucha hai
-               {
-                   if(arr[0]>arr[1]) return 0;
-                   else return 1;
-               }
-               else if(mid==(n-1)){
-                   if(arr[n-1]>arr[n-2]) return (n-1);
-                   else return (n-2);
-               }     
-           }
-       }
-       return -1;
+      int s = 0 , e = n-1 ;
+      int mid = (s+e)/2 ;
+      
+      while( s < e)
+      {
+          if(a[mid] < a[mid+1]){
+          s = mid + 1;
+          }
+          else{
+              e = mid;
+          }
+        mid = (s+e)/2 ;
+      }
+    return s ;
     }
 };
 

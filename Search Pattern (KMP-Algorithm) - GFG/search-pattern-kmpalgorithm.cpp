@@ -7,41 +7,48 @@ using namespace std;
 class Solution
 {
     public:
-        void lps(string pat, vector<int> &ls)
+        void LPS(string pat,vector<int> &lps)
         {
-            int len =0, i=1;
-            ls[0]=0;
+           int len =0, i=1;
+            lps[0]=0;
             while(i<pat.length())
             {
-                if(pat[i]==pat[len]) ls[i++] = ++len;
+                if(pat[i]==pat[len]) lps[i++] = ++len;
                 else
-                    if(len ==0) ls[i++] = 0;
-                    else len=ls[len-1];
+                    if(len ==0) lps[i++] = 0;
+                    else len=lps[len-1];
             }
         }
-        vector<int> search(string pat, string txt)
+    
+        vector <int> search(string pat, string txt)
         {
-            int n = pat.length();
-            int m = txt.length();
-            vector<int> ls(n);
-            lps(pat, ls);
-            int j=0,i=0;
+            //code hee.
+            int n=pat.length();
+            int m=txt.length();
+            vector<int> lps(n);
+            LPS(pat,lps);
+            
+            int i=0;
+            int j=0;
             vector<int> ans;
             while(i<m)
             {
-                if(txt[i]==pat[j]) i++,j++;
+                if(txt[i]==pat[j]) 
+                {
+                    i++;
+                    j++;
+                }
                 if(j==n)
                 {
                     ans.push_back(i-j+1);
-                    j = ls[j-1];
+                    j=lps[j-1];
                 }
-                else if(i<m and txt[i]!=pat[j])
-                {
+                else if(i<m && pat[j]!=txt[i]){
                     if(!j) i++;
-                    else j = ls[j-1];
+                    else j=lps[j-1];  //Yehh match nhi krrha tohh older pattern se hi dhekna padhega nhh
                 }
             }
-            return ans;   
+            return ans;
         }
      
 };

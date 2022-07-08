@@ -1,29 +1,20 @@
 class Solution {
 public:
-    //BFS implementation
+    //DFS implementation
     bool Check(vector<vector<int>>& graph,vector<int> &vis,vector<int> &colour,int curr,int col)
     {
         vis[curr]=1;
-        queue<pair<int,int>> q;
-        q.push({curr,col});
         colour[curr]=col;
-        while(!q.empty())
+        for(int i=0;i<graph[curr].size();i++)
         {
-            curr=q.front().first;
-            col=q.front().second;
-            q.pop();
-            for(int i=0;i<graph[curr].size();i++)
+            int child=graph[curr][i];
+            if(vis[child]==0)
             {
-                int child=graph[curr][i];
-                if(vis[child]==0)
-                {
-                    vis[child]=1;
-                    colour[child]=!col;
-                    q.push({child,!col});
-                }
-                else{
-                    if(colour[curr]==colour[child]) return false;
-                }
+                if(!Check(graph,vis,colour,child,!col)) return false; 
+            }
+            else{
+                if(colour[curr]==colour[child]) 
+                    return false;
             }
         }
         return true;

@@ -9,25 +9,21 @@ using namespace std;
 class Solution{
 public:	
 	// calculate the maximum sum with out adjacent
-	int Solve(int *arr,int n,vector<int> &dp)
-	{
-	    if(n<1) return 0;
-	    if(n==1)
-	    {
-	        return dp[n]=arr[0];
-	    }
-	    if(dp[n]!=-1)
-	    {
-	        return dp[n];
-	    }
-	    
-	    return dp[n]=max(arr[n-1]+Solve(arr,n-2,dp),Solve(arr,n-1,dp));
-	}
 	int findMaxSum(int *arr, int n) {
 	    // code here
-	    vector<int> dp(n+1,-1);
-	    Solve(arr,n,dp);
-	    return dp[n];
+	    //Baat yehh hai ki tum dp se krrskte hoo johh question greddy ka hai vohh dp se tohh solve hooskta hai mgrr space faltu kyoo bdhana
+	    int inc=0;
+	    int exc=0;
+	    int ninc;
+	    int nexc;
+	    for(int i=0;i<n;i++)
+	    {
+	        ninc=exc+arr[i];
+	        nexc=max(inc,exc);
+	        inc=ninc;
+	        exc=nexc;
+	    }
+	    return max(inc,exc);
 	}
 };
 

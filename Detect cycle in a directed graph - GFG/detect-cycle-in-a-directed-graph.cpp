@@ -6,38 +6,36 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in a directed graph.
-    bool Check(vector<int> graph[],int curr,vector<int> &vis)
-    {
-       
-        vis[curr]=1;
-        for(int i=0;i<graph[curr].size();i++)
-        {
-            int child=graph[curr][i];
-            if(vis[child]==0)
-            {
-                if(Check(graph,child,vis))
-                return true;
-            }
-            else{
-                if(vis[child]==1)
-                {
-                    return true;
-                }
-            }
-        }
-        vis[curr]=2;
-        return false;
-    }
-    
-    bool isCyclic(int n, vector<int> graph[]) {
+    bool isCyclic(int n, vector<int> adj[]) {
         // code here
-        vector<int> vis(n,0);
-        
+        vector<int> in(n,0);
         for(int i=0;i<n;i++)
         {
-            if(vis[i]==0)
+            for(int j=0;j<adj[i].size();j++)
             {
-                if(Check(graph,i,vis)) return true;
+                in[adj[i][j]]++;   
+            }
+        }
+        queue<int> q;
+        for(int i=0;i<n;i++) if(in[i]==0) q.push(i);
+        if(q.empty()) return true; //No topological sort possible so cyclic graph cycle is present
+        
+        while(!q.empty())
+        {
+            int curr=q.front();
+            q.pop();
+            for(int i=0;i<adj[curr].size();i++)
+            {
+                int child=adj[curr][i];
+                in[child]--;
+                if(in[child]==0)
+                {
+                    q.push(child);
+                }
+                if(q.size()==0)
+                {
+                    return true; //As no indegree node after an node is connected to cycle so here child is involved in cycle so indegree will be non 0 
+                }
             }
         }
         

@@ -34,22 +34,16 @@ int main(){
 }// } Driver Code Ends
 
 
-/*Complete the functions below*/
-int find(int par[],int X)
+//Shitt fuck shii se tohh statement pdhhh sbhh clear hai parent of Z will became the parent of X
+int find(int A[],int X)
 {
-       //add code here
-       if(par[X]==X)
-       {
-           return X;
-       }
-       return par[X]=find(par,par[X]);  //This is the path compression you needed
+     if(A[X]==X) return X;
+     return A[X]=find(A,A[X]); //Path compression will lie 
+     
+     //Dhande dimaag mai shii se english ko pdho bhaiya ji please
 }
-void unionSet(int par[],int X,int Z)
-{
-	int p1=find(par,X);  
-	//Find the parent of X and then usse joodhna nhh saale usse ekhh hi component mai niklega and height nhi increase hooga
-	int p2=find(par,Z);
-
-	par[p1]=par[p2];
-	
+void unionSet(int A[],int X,int Z)
+{	X=find(A,X);
+	Z=find(A,Z);
+	A[X]=A[Z];
 }

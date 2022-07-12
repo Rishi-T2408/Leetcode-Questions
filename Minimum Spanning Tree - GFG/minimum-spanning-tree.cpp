@@ -12,28 +12,23 @@ class Solution
     int spanningTree(int n, vector<vector<int>> adj[])
     {
         // code here
-        vector<int> key(n,INT_MAX);
-        //Kyoki mai minimum weight of edge adjacent edges rkhayengi 
-        key[0]=0;
+        //Minimum ke liye aap priority queue use kriye but key array tohh aapko maintain krna hi hooga
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+        pq.push({0,0});
         vector<bool> MST(n,false);
         vector<int> parent(n,-1);
+        vector<int> key(n,INT_MAX);
+        key[0]=0;
         int ans=0;
         for(int i=0;i<n;i++)
         {
             //every time we have to find minimum in the key array
             int mn=INT_MAX;
             int k;
-            for(int j=0;j<n;j++)
-            {
-              
-                if(MST[j]!=true && key[j]<mn)
-                {
-                      mn=key[j];  
-                      k=j;
-                }
-            }
+            while(!pq.empty() && MST[pq.top().second]==true) pq.pop();
+            mn=pq.top().first;
+            k=pq.top().second;
             ans+=mn; 
-           
             MST[k]=true;
             for(int i=0;i<adj[k].size();i++)
             {
@@ -44,6 +39,7 @@ class Solution
                 {
                     key[node]=wt;
                     parent[node]=k;
+                    pq.push({key[node],node});
                 }
             }
         }

@@ -49,6 +49,7 @@ void unionSet(int par[],int X,int Z)
 	int p1=find(par,X);  
 	//Find the parent of X and then usse joodhna nhh saale usse ekhh hi component mai niklega and height nhi increase hooga
 	int p2=find(par,Z);
-	par[p1]=p2;
+
+	par[p1]=par[p2];
 	
 }

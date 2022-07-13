@@ -12,9 +12,7 @@ class Solution
         vis[curr]=1;
         for(auto it: adj[curr])
         {
-            
-            if(((curr==c && it==d) || (curr==d && it==c))) continue;  //
-            if(!vis[it])
+            if(!vis[it] && (curr!=c || it!=d))
             {
                 DFS(vis,adj,it,c,d);
             }

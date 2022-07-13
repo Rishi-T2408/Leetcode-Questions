@@ -23,8 +23,9 @@ class Solution {
             if(!vis[it])
             {
                
+                /*Crystal clear*/
                 DFS(it,adj,vis,tim,low,cnt,curr,ans,st);
-                low[curr]=min(low[curr],low[it]);
+                
                 if(low[it]>=tim[curr] && p!=-1)  //Bridge articulation condition + cycle start articulation condition
                 {
                     if(st.find(curr)==st.end())
@@ -33,13 +34,17 @@ class Solution {
                          st.insert(curr);
                     }
                 }
-                child++;
+                else{
+                    low[curr]=min(low[curr],low[it]);
+                }
+                child++;  /*Because there are self loops isliye aaisa hoorha hai simple*/
             }
             else{
                 low[curr]=min(low[curr],tim[it]);  //Adjacent ka kmm hai vohh cycle ka baap hai bs yehh nikaalna hai
             }
             
         }
+        /*Crystal clear*/
         if(p==-1 && child>1)
         {
             if(st.find(curr)==st.end())

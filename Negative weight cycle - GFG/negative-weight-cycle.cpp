@@ -6,11 +6,7 @@ using namespace std;
 class Solution {
 public:
 	int isNegativeWeightCycle(int n, vector<vector<int>>edges){
-	    // Code here
-	    //For finding there is an negative weight cycle in an graph or not we will use Bellman form algorithm result it will give SSSP 
-	    //in (n-1) iterations and if no two iterations is same then negative weight cyclr
-	    vector<int> nums(n,1e7);
-	    nums[0]=0;
+	    vector<int> nums(n,197);
 	    bool flag=false;
 	    while(n--)
 	    {
@@ -26,10 +22,13 @@ public:
 	                nums[v]=(nums[u]+wt); //Means the path from u to v will assign v lesser SSSP
 	            }
 	        }
-	      
+	        if(flag==false)
+	        {
+	            return false; //Kyoki negative weight nhi hai isliye changr nhi aaya and two iterations are same
+	        }
 	    }
 	    //n iterations mai bhi change aate gya then pakka negative weight hai
-	     return (flag==true)?1:0;
+	    return true;
 	}
 };
 

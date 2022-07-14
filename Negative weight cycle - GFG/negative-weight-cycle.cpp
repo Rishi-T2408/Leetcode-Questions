@@ -8,6 +8,7 @@ public:
 	int isNegativeWeightCycle(int n, vector<vector<int>>edges){
 	    vector<int> nums(n,197);
 	    bool flag=false;
+	    n=n*2;
 	    while(n--)
 	    {
 	        flag=false;

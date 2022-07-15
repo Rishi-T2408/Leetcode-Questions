@@ -11,10 +11,14 @@ class Solution
     bool isAnagram(string a, string b){
         
         // Your code here
-        sort(a.begin(),a.end());
-        sort(b.begin(),b.end());
-        return a==b;
-        
+        vector<int> HT(26,0);
+        for(int i=0;i<a.length();i++) HT[a[i]-'a']++;
+        for(int j=0;j<b.length();j++) HT[b[j]-'a']--;  //O(a+b) and space is O(1)
+        for(int i=0;i<26;i++)
+        {
+            if(HT[i]!=0) return false;
+        }
+        return true;
     }
 
 };
